@@ -206,8 +206,8 @@ const Solution = () => (
       
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-4 pt-12">
-          <img src="https://images.unsplash.com/photo-1556740734-7f9a2b7a0f42?auto=format&fit=crop&w=400&q=80" className="rounded-2xl shadow-2xl" alt="Business" referrerPolicy="no-referrer" />
-          <img src="https://images.unsplash.com/photo-1521791136064-7986c2959213?auto=format&fit=crop&w=400&q=80" className="rounded-2xl shadow-2xl" alt="Meeting" referrerPolicy="no-referrer" />
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400&q=80" className="rounded-2xl shadow-2xl" alt="Business" referrerPolicy="no-referrer" />
+          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=400&q=80" className="rounded-2xl shadow-2xl" alt="Meeting" referrerPolicy="no-referrer" />
         </div>
         <div className="space-y-4">
           <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=400&q=80" className="rounded-2xl shadow-2xl" alt="Office" referrerPolicy="no-referrer" />
