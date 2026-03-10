@@ -26,12 +26,15 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <div className="flex items-center gap-2">
+        <button 
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+        >
           <div className="w-10 h-10 bg-brand-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">
             L
           </div>
           <span className="font-bold text-xl tracking-tight text-slate-900">LocalBiz Web</span>
-        </div>
+        </button>
         
         <div className="hidden md:flex items-center gap-8">
           <a href="#services" className="text-sm font-medium text-slate-600 hover:text-brand-primary transition-colors">Services</a>
@@ -79,7 +82,7 @@ const Hero = () => (
         transition={{ duration: 0.6 }}
       >
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary/10 text-brand-primary text-xs font-bold uppercase tracking-wider mb-6">
-          <MapPin size={14} /> Local to Your Area
+          <MapPin size={14} /> Based in Odense, Denmark • Serving Clients Worldwide
         </div>
         <h1 className="heading-xl mb-6 text-slate-900">
           Affordable Websites for <span className="text-brand-primary">Local Businesses</span>
