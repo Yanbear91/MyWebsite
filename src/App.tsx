@@ -360,6 +360,51 @@ const Process = () => (
   </section>
 );
 
+const PortfolioItem = (props: any) => {
+  const { item } = props;
+  const [currentImg, setCurrentImg] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const images = Array.isArray(item.img) ? item.img : [item.img];
+
+  React.useEffect(() => {
+    if (images.length > 1 && isHovered) {
+      const interval = setInterval(() => {
+        setCurrentImg((prev) => (prev + 1) % images.length);
+      }, 1000); // 1 second rotation on hover
+      return () => clearInterval(interval);
+    } else if (!isHovered) {
+      setCurrentImg(0); // Reset to first image when not hovered
+    }
+  }, [images.length, isHovered]);
+
+  return (
+    <motion.div 
+      whileHover={{ y: -10 }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="group cursor-pointer"
+    >
+      <div className="aspect-video rounded-2xl overflow-hidden mb-6 shadow-lg relative bg-slate-100">
+        <AnimatePresence mode="wait">
+          <motion.img 
+            key={images[currentImg]}
+            src={images[currentImg]} 
+            alt={item.title} 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+            referrerPolicy="no-referrer" 
+          />
+        </AnimatePresence>
+      </div>
+      <div className="text-xs font-bold text-brand-primary uppercase tracking-widest mb-1">{item.category}</div>
+      <h3 className="text-xl font-bold text-slate-900">{item.title}</h3>
+    </motion.div>
+  );
+};
+
 const Portfolio = () => (
   <section id="portfolio" className="section-padding bg-white">
     <div className="max-w-4xl mx-auto text-center mb-16">
@@ -367,23 +412,46 @@ const Portfolio = () => (
       <p className="text-lg text-muted">See the types of modern layouts I can build for your business.</p>
     </div>
     
-    <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+    <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-8">
       {[
-        { title: "Restaurant Website", category: "Hospitality", img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80" },
-        { title: "Hair Salon Website", category: "Beauty", img: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80" },
-        { title: "Cleaning Company", category: "Services", img: "https://images.unsplash.com/photo-1581578731548-c64695cc6958?auto=format&fit=crop&w=600&q=80" }
+        { 
+          title: "Restaurant Website", 
+          category: "Hospitality", 
+          img: [
+            "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80"
+          ]
+        },
+        { 
+          title: "Hair Salon Website", 
+          category: "Beauty", 
+          img: [
+            "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=600&q=80"
+          ]
+        },
+        { 
+          title: "Local Trades Website", 
+          category: "Trades", 
+          img: [
+            "https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=600&q=80", // Plumbing
+            "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80", // Construction
+            "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80"  // Electrician
+          ]
+        },
+        { 
+          title: "Cleaning Company Website", 
+          category: "Services", 
+          img: [
+            "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?auto=format&fit=crop&w=600&q=80"
+          ]
+        }
       ].map((item, i) => (
-        <motion.div 
-          key={i}
-          whileHover={{ y: -10 }}
-          className="group cursor-pointer"
-        >
-          <div className="aspect-video rounded-2xl overflow-hidden mb-6 shadow-lg">
-            <img src={item.img} alt={item.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" referrerPolicy="no-referrer" />
-          </div>
-          <div className="text-xs font-bold text-brand-primary uppercase tracking-widest mb-1">{item.category}</div>
-          <h3 className="text-xl font-bold text-slate-900">{item.title}</h3>
-        </motion.div>
+        <PortfolioItem key={i} item={item} />
       ))}
     </div>
     
