@@ -483,7 +483,7 @@ const Contact = () => (
             </div>
             <div>
               <div className="text-sm opacity-50 uppercase tracking-widest font-bold mb-1">Call or Text</div>
-              <div className="text-xl font-bold">(555) 123-4567</div>
+              <a href="https://wa.me/447478375325" target="_blank" rel="noopener noreferrer" className="text-xl font-bold hover:text-brand-accent transition-colors">07478375325</a>
             </div>
           </div>
           
@@ -493,7 +493,7 @@ const Contact = () => (
             </div>
             <div>
               <div className="text-sm opacity-50 uppercase tracking-widest font-bold mb-1">Email Me</div>
-              <div className="text-xl font-bold">hello@localbizweb.com</div>
+              <a href="mailto:yannissh91@gmail.com" className="text-xl font-bold hover:text-brand-accent transition-colors">yannissh91@gmail.com</a>
             </div>
           </div>
           
@@ -503,7 +503,7 @@ const Contact = () => (
             </div>
             <div>
               <div className="text-sm opacity-50 uppercase tracking-widest font-bold mb-1">Direct Message</div>
-              <div className="text-xl font-bold">Available on WhatsApp</div>
+              <a href="https://wa.me/447478375325" target="_blank" rel="noopener noreferrer" className="text-xl font-bold hover:text-brand-accent transition-colors">Available on WhatsApp</a>
             </div>
           </div>
         </div>
@@ -577,8 +577,8 @@ const Footer = () => (
       
       <div className="flex gap-6">
         <a href="#" className="text-slate-400 hover:text-brand-primary transition-colors"><Globe size={20} /></a>
-        <a href="#" className="text-slate-400 hover:text-brand-primary transition-colors"><Mail size={20} /></a>
-        <a href="#" className="text-slate-400 hover:text-brand-primary transition-colors"><Phone size={20} /></a>
+        <a href="mailto:yannissh91@gmail.com" className="text-slate-400 hover:text-brand-primary transition-colors"><Mail size={20} /></a>
+        <a href="https://wa.me/447478375325" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-brand-primary transition-colors"><Phone size={20} /></a>
       </div>
     </div>
   </footer>
