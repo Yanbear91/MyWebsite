@@ -536,7 +536,9 @@ const ContactFormAndInfo = () => (
             </div>
             <div>
               <div className="text-sm opacity-50 uppercase tracking-widest font-bold mb-1">Direct Message</div>
-              <a href="https://wa.me/447478375325" target="_blank" rel="noopener noreferrer" className="text-xl font-bold hover:text-brand-accent transition-colors">Available on WhatsApp</a>
+              <a href="https://wa.me/447478375325" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xl font-bold text-brand-accent hover:text-white transition-colors group">
+                Message on WhatsApp <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              </a>
             </div>
           </div>
         </div>
