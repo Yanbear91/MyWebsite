@@ -18,7 +18,8 @@ import {
   Menu,
   X,
   Moon,
-  Sun
+  Sun,
+  Zap // Added Zap icon for the "Surge" theme
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -37,10 +38,10 @@ const Navbar = ({ isDark, setIsDark }: { isDark: boolean, setIsDark: (v: boolean
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className="flex items-center gap-2 hover:opacity-80 transition-opacity"
         >
-          <div className="w-10 h-10 bg-brand-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">
-            L
+          <div className="w-10 h-10 bg-brand-primary rounded-lg flex items-center justify-center text-white">
+            <Zap size={24} fill="currentColor" />
           </div>
-          <span className="font-bold text-xl tracking-tight text-slate-900 dark:text-white">LocalBiz Web</span>
+          <span className="font-bold text-xl tracking-tight text-slate-900 dark:text-white">Surge Web Studio</span>
         </button>
         
         <div className="hidden md:flex items-center gap-8">
@@ -110,10 +111,10 @@ const Hero = () => (
           <MapPin size={14} /> Based in Odense, Denmark • Serving Clients Worldwide
         </div>
         <h1 className="heading-xl mb-6 text-slate-900 dark:text-white">
-          Affordable Websites for <span className="text-brand-primary dark:text-brand-accent">Local Businesses</span>
+          A Surge of Customers Starts With a <span className="text-brand-primary dark:text-brand-accent">Great Website</span>
         </h1>
         <p className="text-xl text-muted dark:text-slate-400 mb-8 max-w-lg">
-          I help small businesses get modern, professional websites that attract more customers and build real trust online.
+          I build powerful, lightning-fast websites that help local businesses dominate their market and get more customers.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 mb-10">
           <a href="#contact" className="px-8 py-4 bg-brand-primary text-white font-bold rounded-xl hover:bg-brand-accent transition-all flex items-center justify-center gap-2 shadow-xl shadow-brand-primary/20 group">
@@ -144,6 +145,10 @@ const Hero = () => (
         className="relative hidden lg:block"
       >
         <div className="aspect-square bg-gradient-to-br from-brand-primary to-brand-accent rounded-3xl rotate-3 absolute inset-0 opacity-10 blur-3xl"></div>
+        {/* Subtle surge/lightning element behind the image */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full text-brand-primary/5 dark:text-brand-accent/5 -z-10 rotate-12">
+           <Zap className="w-full h-full" />
+        </div>
         <img 
           src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" 
           alt="Professional web design" 
@@ -590,14 +595,14 @@ const Footer = () => (
   <footer className="py-12 px-6 border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-brand-dark-bg transition-colors duration-300">
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
       <div className="flex items-center gap-2">
-        <div className="w-8 h-8 bg-brand-primary rounded flex items-center justify-center text-white font-bold">
-          L
+        <div className="w-8 h-8 bg-brand-primary rounded flex items-center justify-center text-white">
+          <Zap size={18} fill="currentColor" />
         </div>
-        <span className="font-bold text-lg tracking-tight text-slate-900 dark:text-white">LocalBiz Web Design</span>
+        <span className="font-bold text-lg tracking-tight text-slate-900 dark:text-white">Surge Web Studio</span>
       </div>
       
       <div className="text-sm text-slate-500 dark:text-slate-400">
-        © {new Date().getFullYear()} LocalBiz Web Design. Helping local businesses grow online.
+        © {new Date().getFullYear()} Surge Web Studio. Powering local businesses online.
       </div>
       
       <div className="flex gap-6">
