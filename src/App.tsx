@@ -508,27 +508,30 @@ const Contact = () => (
         
         <div className="space-y-8">
           <div className="flex items-center gap-6">
-            <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-brand-accent">
+            <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center flex-shrink-0 text-brand-accent">
               <Phone size={24} />
             </div>
             <div>
               <div className="text-sm opacity-50 uppercase tracking-widest font-bold mb-1">Call or Text</div>
-              <a href="https://wa.me/447478375325" target="_blank" rel="noopener noreferrer" className="text-xl font-bold hover:text-brand-accent transition-colors">07478375325</a>
+              <div className="flex flex-col gap-1">
+                <a href="tel:+4555261418" className="text-xl font-bold hover:text-brand-accent transition-colors">DK: +45 55 26 14 18</a>
+                <a href="tel:+447478375325" className="text-xl font-bold hover:text-brand-accent transition-colors">UK: +44 7478 375325</a>
+              </div>
             </div>
           </div>
           
           <div className="flex items-center gap-6">
-            <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-brand-accent">
+            <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center flex-shrink-0 text-brand-accent">
               <Mail size={24} />
             </div>
             <div>
               <div className="text-sm opacity-50 uppercase tracking-widest font-bold mb-1">Email Me</div>
-              <a href="mailto:yannissh91@gmail.com" className="text-xl font-bold hover:text-brand-accent transition-colors">yannissh91@gmail.com</a>
+              <a href="mailto:hello@surgewebstudio.com" className="text-xl font-bold hover:text-brand-accent transition-colors">hello@surgewebstudio.com</a>
             </div>
           </div>
           
           <div className="flex items-center gap-6">
-            <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-brand-accent">
+            <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center flex-shrink-0 text-brand-accent">
               <MessageSquare size={24} />
             </div>
             <div>
@@ -607,7 +610,7 @@ const Footer = () => (
       
       <div className="flex gap-6">
         <a href="#" className="text-slate-400 hover:text-brand-primary transition-colors"><Globe size={20} /></a>
-        <a href="mailto:yannissh91@gmail.com" className="text-slate-400 hover:text-brand-primary transition-colors"><Mail size={20} /></a>
+        <a href="mailto:hello@surgewebstudio.com" className="text-slate-400 hover:text-brand-primary transition-colors"><Mail size={20} /></a>
         <a href="https://wa.me/447478375325" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-brand-primary transition-colors"><Phone size={20} /></a>
       </div>
     </div>
