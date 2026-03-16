@@ -99,7 +99,7 @@ const Navbar = ({ isDark, setIsDark }: { isDark: boolean, setIsDark: (v: boolean
   );
 };
 
-const Hero = () => (
+const TopTitleAndImage = () => (
   <section className="pt-40 pb-20 px-6 md:px-12 lg:px-24 bg-brand-bg dark:bg-slate-900/50 relative overflow-hidden transition-colors duration-300">
     <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
       <motion.div
@@ -160,7 +160,7 @@ const Hero = () => (
   </section>
 );
 
-const Problem = () => (
+const CustomerProblemsText = () => (
   <section className="section-padding bg-white dark:bg-brand-dark-bg transition-colors duration-300">
     <div className="max-w-4xl mx-auto text-center mb-16">
       <h2 className="heading-lg mb-6 text-slate-900 dark:text-white">Many Small Businesses Are <span className="text-red-600">Losing Customers</span> Online</h2>
@@ -206,7 +206,7 @@ const Problem = () => (
   </section>
 );
 
-const Solution = () => (
+const OurSolutionText = () => (
   <section className="section-padding bg-brand-primary dark:bg-slate-900 text-white overflow-hidden relative transition-colors duration-300">
     <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
     <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-accent/20 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl"></div>
@@ -251,7 +251,7 @@ const Solution = () => (
   </section>
 );
 
-const Services = () => (
+const OurPricingPackages = () => (
   <section id="services" className="section-padding bg-slate-50 dark:bg-slate-900/50 transition-colors duration-300">
     <div className="max-w-4xl mx-auto text-center mb-16">
       <h2 className="heading-lg mb-6 text-slate-900 dark:text-white">Clear & Simple Service Options</h2>
@@ -314,7 +314,7 @@ const Services = () => (
   </section>
 );
 
-const WhyChooseMe = () => (
+const WhyChooseUsSection = () => (
   <section className="section-padding bg-white dark:bg-brand-dark-bg transition-colors duration-300">
     <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
       <div>
@@ -365,7 +365,7 @@ const WhyChooseMe = () => (
   </section>
 );
 
-const Process = () => (
+const StepByStepProcess = () => (
   <section id="process" className="section-padding bg-slate-50 dark:bg-slate-900/50 transition-colors duration-300">
     <div className="max-w-4xl mx-auto text-center mb-16">
       <h2 className="heading-lg mb-6 text-slate-900 dark:text-white">How the Process Works</h2>
@@ -393,7 +393,7 @@ const Process = () => (
   </section>
 );
 
-const PortfolioItem = (props: any) => {
+const ExampleWebsiteItem = (props: any) => {
   const { item } = props;
   const [currentImg, setCurrentImg] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -438,7 +438,7 @@ const PortfolioItem = (props: any) => {
   );
 };
 
-const Portfolio = () => (
+const RecentExampleWebsites = () => (
   <section id="portfolio" className="section-padding bg-white dark:bg-brand-dark-bg transition-colors duration-300">
     <div className="max-w-4xl mx-auto text-center mb-16">
       <h2 className="heading-lg mb-6 text-slate-900 dark:text-white">Example Business Websites</h2>
@@ -484,7 +484,7 @@ const Portfolio = () => (
           ]
         }
       ].map((item, i) => (
-        <PortfolioItem key={i} item={item} />
+        <ExampleWebsiteItem key={i} item={item} />
       ))}
     </div>
     
@@ -497,7 +497,7 @@ const Portfolio = () => (
   </section>
 );
 
-const Contact = () => (
+const ContactFormAndInfo = () => (
   <section id="contact" className="section-padding bg-slate-900 dark:bg-slate-950 text-white transition-colors duration-300">
     <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20">
       <div>
@@ -572,7 +572,7 @@ const Contact = () => (
   </section>
 );
 
-const FAQ = () => (
+const FrequentlyAskedQuestions = () => (
   <section className="section-padding bg-slate-50 dark:bg-slate-900/50 transition-colors duration-300">
     <div className="max-w-4xl mx-auto text-center mb-16">
       <h2 className="heading-lg mb-6 text-slate-900 dark:text-white">Frequently Asked Questions</h2>
@@ -633,15 +633,15 @@ export default function App() {
     <div className="min-h-screen selection:bg-brand-primary selection:text-white dark:bg-brand-dark-bg transition-colors duration-300">
       <Navbar isDark={isDark} setIsDark={setIsDark} />
       <main>
-        <Hero />
-        <Problem />
-        <Solution />
-        <Services />
-        <WhyChooseMe />
-        <Process />
-        <Portfolio />
-        <FAQ />
-        <Contact />
+        <TopTitleAndImage />
+        <CustomerProblemsText />
+        <OurSolutionText />
+        <OurPricingPackages />
+        <WhyChooseUsSection />
+        <StepByStepProcess />
+        <RecentExampleWebsites />
+        <FrequentlyAskedQuestions />
+        <ContactFormAndInfo />
       </main>
       <Footer />
     </div>
