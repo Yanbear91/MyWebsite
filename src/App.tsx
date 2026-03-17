@@ -500,7 +500,38 @@ const RecentExampleWebsites = () => (
   </section>
 );
 
-const ContactFormAndInfo = () => (
+const ContactFormAndInfo = () => {
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('submitting');
+    
+    const formData = new FormData(e.currentTarget);
+    formData.append("access_key", "00068443-466d-49e7-bc69-70c973af34ce");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus('success');
+        (e.target as HTMLFormElement).reset();
+      } else {
+        console.error("Error from Web3Forms:", data);
+        setStatus('error');
+      }
+    } catch (error) {
+      console.error("Submission failed:", error);
+      setStatus('error');
+    }
+  };
+
+  return (
   <section id="contact" className="section-padding bg-slate-900 dark:bg-slate-950 text-white transition-colors duration-300">
     <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20">
       <div>
@@ -549,33 +580,61 @@ const ContactFormAndInfo = () => (
       
       <div className="bg-white dark:bg-brand-dark-bg p-10 rounded-3xl shadow-2xl transition-colors duration-300">
         <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">Send a Message</h3>
-        <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="grid sm:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-700 dark:text-slate-300">Your Name</label>
-              <input type="text" className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-primary/20" placeholder="John Doe" />
+              <label htmlFor="name" className="text-sm font-bold text-slate-700 dark:text-slate-300">Your Name</label>
+              <input type="text" id="name" name="name" required className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-primary/20" placeholder="John Doe" />
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-700 dark:text-slate-300">Business Name</label>
-              <input type="text" className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-primary/20" placeholder="Local Coffee Shop" />
+              <label htmlFor="business" className="text-sm font-bold text-slate-700 dark:text-slate-300">Business Name</label>
+              <input type="text" id="business" name="business" className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-primary/20" placeholder="Local Coffee Shop" />
             </div>
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-bold text-slate-700 dark:text-slate-300">Email Address</label>
-            <input type="email" className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-primary/20" placeholder="john@example.com" />
+            <label htmlFor="email" className="text-sm font-bold text-slate-700 dark:text-slate-300">Email Address</label>
+            <input type="email" id="email" name="email" required className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-primary/20" placeholder="john@example.com" />
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-bold text-slate-700 dark:text-slate-300">How can I help?</label>
-            <textarea rows={4} className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-primary/20" placeholder="Tell me about your project..."></textarea>
+            <label htmlFor="message" className="text-sm font-bold text-slate-700 dark:text-slate-300">How can I help?</label>
+            <textarea id="message" name="message" required rows={4} className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-primary/20" placeholder="Tell me about your project..."></textarea>
           </div>
-          <button className="w-full py-4 bg-brand-primary text-white font-bold rounded-xl hover:bg-brand-accent transition-all shadow-xl shadow-brand-primary/20">
-            Send Inquiry
+          
+          {/* Honeypot Spam Protection */}
+          <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
+
+          <button 
+            type="submit" 
+            disabled={status === 'submitting'}
+            className="w-full py-4 bg-brand-primary text-white font-bold rounded-xl hover:bg-brand-accent transition-all shadow-xl shadow-brand-primary/20 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          >
+            {status === 'submitting' ? (
+              <>Sending...</>
+            ) : status === 'success' ? (
+              <><CheckCircle2 size={20} /> Sent Successfully!</>
+            ) : status === 'error' ? (
+              <>Error. Try Again.</>
+            ) : (
+              <>Send Inquiry</>
+            )}
           </button>
+          
+          {status === 'success' && (
+            <p className="text-green-500 text-sm text-center font-medium mt-4">
+              Thank you! Your message has been sent successfully. I will get back to you soon.
+            </p>
+          )}
+          {status === 'error' && (
+            <p className="text-red-500 text-sm text-center font-medium mt-4">
+              Oops! Something went wrong. Please try emailing directly at hello@surgewebstudio.com.
+            </p>
+          )}
         </form>
       </div>
     </div>
   </section>
-);
+  );
+};
 
 const FrequentlyAskedQuestions = () => (
   <section className="section-padding bg-slate-50 dark:bg-slate-900/50 transition-colors duration-300">
