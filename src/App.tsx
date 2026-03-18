@@ -287,7 +287,8 @@ const OurPricingPackages = ({ selectedPlan, onSelectPlan }: { selectedPlan: stri
         return (
           <div 
             key={i} 
-            className={`relative p-10 rounded-3xl transition-all ${isSelected ? 'bg-white dark:bg-slate-800 border-2 border-brand-primary shadow-2xl shadow-brand-primary/10 transform scale-105 z-10' : 'bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-brand-primary/50'}`}
+            onClick={() => onSelectPlan(service.title)}
+            className={`cursor-pointer relative p-10 rounded-3xl transition-all ${isSelected ? 'bg-white dark:bg-slate-800 border-2 border-brand-primary shadow-2xl shadow-brand-primary/10 transform scale-105 z-10' : 'bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-brand-primary/50'}`}
           >
             {service.popular && (
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-brand-primary text-white text-xs font-bold rounded-full uppercase tracking-widest">
@@ -309,10 +310,12 @@ const OurPricingPackages = ({ selectedPlan, onSelectPlan }: { selectedPlan: stri
             </ul>
             <a 
               href="#contact" 
-              onClick={() => onSelectPlan(service.title)}
+              onClick={(e) => {
+                onSelectPlan(service.title);
+              }}
               className={`block w-full py-4 text-center font-bold rounded-xl transition-all ${isSelected ? 'bg-brand-primary text-white hover:bg-brand-accent shadow-lg shadow-brand-primary/20' : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-600'}`}
             >
-              {isSelected ? 'Selected' : 'Select Plan'}
+              Select Plan
             </a>
           </div>
         );
@@ -589,11 +592,10 @@ const ContactFormAndInfo = ({ selectedPlan }: { selectedPlan: string | null }) =
         <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Send a Message</h3>
         
         {selectedPlan && (
-          <div className="mb-6 mt-4 p-4 bg-brand-primary/10 border border-brand-primary/20 rounded-xl flex items-start gap-3">
-             <div className="text-brand-primary mt-0.5"><CheckCircle2 size={18} /></div>
+          <div className="mb-6 mt-4 p-4 bg-brand-primary/10 border border-brand-primary/20 rounded-xl flex items-center gap-3">
+             <div className="text-brand-primary"><CheckCircle2 size={18} /></div>
              <div>
-               <p className="text-sm font-bold text-slate-900 dark:text-white mb-1">Smart Choice!</p>
-               <p className="text-slate-600 dark:text-slate-400 text-sm">You've chosen the <span className="font-bold text-brand-primary">{selectedPlan}</span> package.</p>
+               <p className="text-slate-600 dark:text-slate-400 text-sm">You've chosen the <a href="#services" className="font-bold text-brand-primary hover:underline">{selectedPlan}</a> plan.</p>
              </div>
           </div>
         )}
