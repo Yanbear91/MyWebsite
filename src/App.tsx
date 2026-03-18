@@ -254,7 +254,7 @@ const OurSolutionText = () => (
   </section>
 );
 
-const OurPricingPackages = () => (
+const OurPricingPackages = ({ selectedPlan, onSelectPlan }: { selectedPlan: string | null, onSelectPlan: (plan: string) => void }) => (
   <section id="services" className="section-padding bg-slate-50 dark:bg-slate-900/50 transition-colors duration-300">
     <div className="max-w-4xl mx-auto text-center mb-16">
       <h2 className="heading-lg mb-6 text-slate-900 dark:text-white">Clear & Simple Service Options</h2>
@@ -282,37 +282,41 @@ const OurPricingPackages = () => (
           icon: RefreshCw,
           features: ["Modern Design", "Improved Mobile Performance", "Faster Loading Pages", "SEO Optimization", "Content Updates"]
         }
-      ].map((service, i) => (
-        <div 
-          key={i} 
-          className={`relative p-10 rounded-3xl transition-all ${service.popular ? 'bg-white dark:bg-slate-800 border-brand-primary shadow-2xl shadow-brand-primary/10' : 'bg-white dark:bg-slate-800/50 border-slate-200 dark:border-slate-800 shadow-sm'}`}
-        >
-          {service.popular && (
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-brand-primary text-white text-xs font-bold rounded-full uppercase tracking-widest">
-              Most Popular
-            </div>
-          )}
-          <div className="w-14 h-14 bg-brand-bg dark:bg-slate-700 rounded-2xl flex items-center justify-center text-brand-primary dark:text-brand-accent mb-8">
-            <service.icon size={28} />
-          </div>
-          <h3 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">{service.title}</h3>
-          <p className="text-slate-500 dark:text-slate-400 mb-8 text-sm leading-relaxed">{service.desc}</p>
-          <ul className="space-y-4 mb-10">
-            {service.features.map((feature, j) => (
-              <li key={j} className="flex items-center gap-3 text-sm font-medium text-slate-700 dark:text-slate-300">
-                <CheckCircle2 size={16} className="text-emerald-500" />
-                {feature}
-              </li>
-            ))}
-          </ul>
-          <a 
-            href="#contact" 
-            className={`block w-full py-4 text-center font-bold rounded-xl transition-all ${service.popular ? 'bg-brand-primary text-white hover:bg-brand-accent' : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-600'}`}
+      ].map((service, i) => {
+        const isSelected = selectedPlan === service.title;
+        return (
+          <div 
+            key={i} 
+            className={`relative p-10 rounded-3xl transition-all ${isSelected ? 'bg-white dark:bg-slate-800 border-2 border-brand-primary shadow-2xl shadow-brand-primary/10 transform scale-105 z-10' : 'bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-brand-primary/50'}`}
           >
-            Select Plan
-          </a>
-        </div>
-      ))}
+            {service.popular && (
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-brand-primary text-white text-xs font-bold rounded-full uppercase tracking-widest">
+                Most Popular
+              </div>
+            )}
+            <div className="w-14 h-14 bg-brand-bg dark:bg-slate-700 rounded-2xl flex items-center justify-center text-brand-primary dark:text-brand-accent mb-8">
+              <service.icon size={28} />
+            </div>
+            <h3 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">{service.title}</h3>
+            <p className="text-slate-500 dark:text-slate-400 mb-8 text-sm leading-relaxed">{service.desc}</p>
+            <ul className="space-y-4 mb-10">
+              {service.features.map((feature, j) => (
+                <li key={j} className="flex items-center gap-3 text-sm font-medium text-slate-700 dark:text-slate-300">
+                  <CheckCircle2 size={16} className="text-emerald-500" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+            <a 
+              href="#contact" 
+              onClick={() => onSelectPlan(service.title)}
+              className={`block w-full py-4 text-center font-bold rounded-xl transition-all ${isSelected ? 'bg-brand-primary text-white hover:bg-brand-accent shadow-lg shadow-brand-primary/20' : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-600'}`}
+            >
+              {isSelected ? 'Selected' : 'Select Plan'}
+            </a>
+          </div>
+        );
+      })}
     </div>
   </section>
 );
@@ -500,7 +504,7 @@ const RecentExampleWebsites = () => (
   </section>
 );
 
-const ContactFormAndInfo = () => {
+const ContactFormAndInfo = ({ selectedPlan }: { selectedPlan: string | null }) => {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -509,6 +513,9 @@ const ContactFormAndInfo = () => {
     
     const formData = new FormData(e.currentTarget);
     formData.append("access_key", "00068443-466d-49e7-bc69-70c973af34ce");
+    if (selectedPlan) {
+      formData.append("Selected Plan", selectedPlan);
+    }
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -579,8 +586,19 @@ const ContactFormAndInfo = () => {
       </div>
       
       <div className="bg-white dark:bg-brand-dark-bg p-10 rounded-3xl shadow-2xl transition-colors duration-300">
-        <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">Send a Message</h3>
-        <form className="space-y-6" onSubmit={handleSubmit}>
+        <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Send a Message</h3>
+        
+        {selectedPlan && (
+          <div className="mb-6 mt-4 p-4 bg-brand-primary/10 border border-brand-primary/20 rounded-xl flex items-start gap-3">
+             <div className="text-brand-primary mt-0.5"><CheckCircle2 size={18} /></div>
+             <div>
+               <p className="text-sm font-bold text-slate-900 dark:text-white mb-1">Smart Choice!</p>
+               <p className="text-slate-600 dark:text-slate-400 text-sm">You've chosen the <span className="font-bold text-brand-primary">{selectedPlan}</span> package.</p>
+             </div>
+          </div>
+        )}
+
+        <form className="space-y-6 mt-6" onSubmit={handleSubmit}>
           <div className="grid sm:grid-cols-2 gap-6">
             <div className="space-y-2">
               <label htmlFor="name" className="text-sm font-bold text-slate-700 dark:text-slate-300">Your Name</label>
@@ -683,6 +701,7 @@ const Footer = () => (
 
 export default function App() {
   const [isDark, setIsDark] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState<string | null>("Booking Website");
 
   useEffect(() => {
     console.log('Dark mode effect running, isDark:', isDark);
@@ -700,12 +719,12 @@ export default function App() {
         <TopTitleAndImage />
         <CustomerProblemsText />
         <OurSolutionText />
-        <OurPricingPackages />
+        <OurPricingPackages selectedPlan={selectedPlan} onSelectPlan={setSelectedPlan} />
         <WhyChooseUsSection />
         <StepByStepProcess />
         <RecentExampleWebsites />
         <FrequentlyAskedQuestions />
-        <ContactFormAndInfo />
+        <ContactFormAndInfo selectedPlan={selectedPlan} />
       </main>
       <Footer />
     </div>
