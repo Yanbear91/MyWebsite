@@ -352,7 +352,7 @@ const WhyChooseUsSection = () => (
         
         <div className="mt-12 p-6 bg-slate-50 dark:bg-slate-900/50 rounded-2xl border-l-4 border-brand-primary">
           <p className="italic text-slate-700 dark:text-slate-300 font-medium">
-            "Built by a software engineering graduate focused on helping local businesses grow."
+            "Built by a software engineer focused on delivering smooth and fast products of excellent quality at competitive prices."
           </p>
         </div>
       </div>
