@@ -601,6 +601,9 @@ const ContactFormAndInfo = ({ selectedPlan }: { selectedPlan: string | null }) =
         )}
 
         <form className="space-y-6 mt-6" onSubmit={handleSubmit}>
+          {/* Automatically pass the selected plan into the email */}
+          <input type="hidden" name="Selected Plan" value={selectedPlan || "None"} />
+
           <div className="grid sm:grid-cols-2 gap-6">
             <div className="space-y-2">
               <label htmlFor="name" className="text-sm font-bold text-slate-700 dark:text-slate-300">Your Name</label>
