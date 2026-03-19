@@ -324,19 +324,22 @@ const OurPricingPackages = ({ selectedPlan, onSelectPlan }: { selectedPlan: stri
         {
           title: "Starter Website",
           desc: "For small businesses that need a clean, professional online presence.",
+          price: "From 7,000 kr",
           icon: Globe,
           features: ["Homepage", "Services Page", "Contact Page", "Mobile-Friendly", "Basic SEO Setup"]
         },
         {
           title: "Booking Website",
           desc: "For salons, clinics, and appointment-based businesses.",
+          price: "From 9,000 kr",
           icon: Calendar,
-          features: ["Online Booking System", "Service Listing", "Appointment Scheduling", "Contact Page", "Mobile-Friendly"],
+          features: ["Everything from Starter Website", "Online Booking System", "Service Listing", "Appointment Scheduling", "Contact Page", "Mobile-Friendly"],
           popular: true
         },
         {
           title: "Website Redesign",
           desc: "For businesses with outdated websites that need a modern refresh.",
+          price: "From 8,000 kr",
           icon: RefreshCw,
           features: ["Modern Design", "Improved Mobile Performance", "Faster Loading Pages", "SEO Optimization", "Content Updates"]
         }
@@ -356,7 +359,8 @@ const OurPricingPackages = ({ selectedPlan, onSelectPlan }: { selectedPlan: stri
             <div className="w-14 h-14 bg-brand-bg dark:bg-slate-700 rounded-2xl flex items-center justify-center text-brand-primary dark:text-brand-accent mb-8">
               <service.icon size={28} />
             </div>
-            <h3 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">{service.title}</h3>
+            <h3 className="text-2xl font-bold mb-2 text-slate-900 dark:text-white">{service.title}</h3>
+            <div className="text-xl font-bold text-brand-primary dark:text-brand-accent mb-4">{service.price}</div>
             <p className="text-slate-500 dark:text-slate-400 mb-8 text-sm leading-relaxed">{service.desc}</p>
             <ul className="space-y-4 mb-10">
               {service.features.map((feature, j) => (
@@ -378,6 +382,13 @@ const OurPricingPackages = ({ selectedPlan, onSelectPlan }: { selectedPlan: stri
           </div>
         );
       })}
+    </div>
+    
+    <div className="max-w-3xl mx-auto mt-20 p-8 bg-brand-bg rounded-3xl border border-brand-primary/20 text-center">
+      <h4 className="text-xl font-bold text-slate-900 mb-4">Special Portfolio Offer</h4>
+      <p className="text-slate-600 mb-0">
+        Currently offering <strong>discounted websites</strong> for local businesses while building my local portfolio. Contact me today to lock in a special rate!
+      </p>
     </div>
   </section>
 );
@@ -554,13 +565,6 @@ const RecentExampleWebsites = () => (
       ].map((item, i) => (
         <ExampleWebsiteItem key={i} item={item} />
       ))}
-    </div>
-    
-    <div className="max-w-3xl mx-auto mt-20 p-8 bg-brand-bg rounded-3xl border border-brand-primary/20 text-center">
-      <h4 className="text-xl font-bold text-slate-900 mb-4">Special Portfolio Offer</h4>
-      <p className="text-slate-600 mb-0">
-        Currently offering <strong>discounted websites</strong> for local businesses while building my local portfolio. Contact me today to lock in a special rate!
-      </p>
     </div>
   </section>
 );
