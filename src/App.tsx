@@ -323,7 +323,7 @@ const OurSolutionText = () => (
   </section>
 );
 
-const OurPricingPackages = ({ selectedPlan, onSelectPlan }: { selectedPlan: string | null, onSelectPlan: (plan: string) => void }) => (
+const OurPricingPackages = ({ selectedPlan, onSelectPlan }: { selectedPlan: string | null, onSelectPlan: (plan: string | null) => void }) => (
   <section id="services" className="section-padding bg-slate-50 dark:bg-slate-900/50 transition-colors duration-300">
     <div className="max-w-4xl mx-auto text-center mb-16">
       <h2 className="heading-lg mb-6 text-slate-900 dark:text-white">Clear & Simple Service Options</h2>
@@ -356,7 +356,7 @@ const OurPricingPackages = ({ selectedPlan, onSelectPlan }: { selectedPlan: stri
         return (
           <div 
             key={i} 
-            onClick={() => onSelectPlan(service.title)}
+            onClick={() => onSelectPlan(isSelected ? null : service.title)}
             className={`cursor-pointer relative p-10 rounded-3xl transition-all ${isSelected ? 'bg-white dark:bg-slate-800 border-2 border-brand-primary shadow-2xl shadow-brand-primary/10 transform scale-105 z-10' : 'bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-brand-primary/50'}`}
           >
             {service.popular && (
@@ -380,11 +380,11 @@ const OurPricingPackages = ({ selectedPlan, onSelectPlan }: { selectedPlan: stri
             <a 
               href="#contact" 
               onClick={(e) => {
-                onSelectPlan(service.title);
+                onSelectPlan(isSelected ? null : service.title);
               }}
               className={`block w-full py-4 text-center font-bold rounded-xl transition-all ${isSelected ? 'bg-brand-primary text-white hover:bg-brand-accent shadow-lg shadow-brand-primary/20' : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-600'}`}
             >
-              Select Plan
+              {isSelected ? 'Selected' : 'Select Plan'}
             </a>
           </div>
         );
@@ -775,7 +775,7 @@ const Footer = () => (
 
 export default function App() {
   const [isDark, setIsDark] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState<string | null>("Booking Website");
+  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
 
   useEffect(() => {
     console.log('Dark mode effect running, isDark:', isDark);
