@@ -19,7 +19,10 @@ import {
   X,
   Moon,
   Sun,
-  Zap // Added Zap icon for the "Surge" theme
+  Zap, // Added Zap icon for the "Surge" theme
+  ShieldCheck,
+  TrendingUp,
+  BarChart2
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -61,7 +64,7 @@ const Navbar = ({ isDark, setIsDark }: { isDark: boolean, setIsDark: (v: boolean
               {isDark ? <Sun size={20} /> : <Moon size={20} />}
             </button>
             <a href="#contact" className="px-5 py-2.5 bg-brand-primary text-white text-sm font-semibold rounded-full hover:bg-brand-accent transition-all shadow-lg shadow-brand-primary/20">
-              Get a Quote
+              Free Website Audit
             </a>
           </div>
         </div>
@@ -92,7 +95,7 @@ const Navbar = ({ isDark, setIsDark }: { isDark: boolean, setIsDark: (v: boolean
               <a href="#process" onClick={() => setIsOpen(false)} className="text-lg font-medium text-slate-900 dark:text-white">How it Works</a>
               <a href="#portfolio" onClick={() => setIsOpen(false)} className="text-lg font-medium text-slate-900 dark:text-white">Examples</a>
               <a href="#contact" onClick={() => setIsOpen(false)} className="w-full py-4 bg-brand-primary text-white text-center font-bold rounded-xl">
-                Get a Quote
+                Free Website Audit
               </a>
             </div>
           </motion.div>
@@ -110,9 +113,6 @@ const TopTitleAndImage = () => (
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary/10 text-brand-primary dark:text-brand-accent text-xs font-bold uppercase tracking-wider mb-6">
-          <MapPin size={14} /> Based in Odense, Denmark • Serving Clients Worldwide
-        </div>
         <h1 className="heading-xl mb-6 text-slate-900 dark:text-white">
           A Surge of Customers Starts With a <span className="text-brand-primary dark:text-brand-accent">Great Website</span>
         </h1>
@@ -121,7 +121,7 @@ const TopTitleAndImage = () => (
         </p>
         <div className="flex flex-col sm:flex-row gap-4 mb-10">
           <a href="#contact" className="px-8 py-4 bg-brand-primary text-white font-bold rounded-xl hover:bg-brand-accent transition-all flex items-center justify-center gap-2 shadow-xl shadow-brand-primary/20 group">
-            Get a Free Consultation <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            Get Your Free Website Audit <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
           </a>
           <a href="#portfolio" className="px-8 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 font-bold rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 transition-all flex items-center justify-center">
             View Example Layouts
@@ -129,9 +129,9 @@ const TopTitleAndImage = () => (
         </div>
         <div className="flex flex-wrap gap-6">
           {[
-            { icon: Clock, text: "Fast 7-Day Setup" },
-            { icon: Smartphone, text: "Mobile Friendly" },
-            { icon: CheckCircle2, text: "Affordable Pricing" }
+            { icon: Zap, text: "Lightning-Fast Load Times" },
+            { icon: Users, text: "Increased Customer Inquiries" },
+            { icon: ShieldCheck, text: "Built-in Trust Factors" }
           ].map((item, i) => (
             <div key={i} className="flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-400">
               <item.icon size={18} className="text-brand-primary dark:text-brand-accent" />
@@ -158,6 +158,21 @@ const TopTitleAndImage = () => (
           className="rounded-3xl shadow-2xl relative z-10 border-8 border-white dark:border-slate-800 transition-colors duration-300"
           referrerPolicy="no-referrer"
         />
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className="absolute -top-6 -right-6 z-20 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-2xl flex gap-4 items-center border border-slate-100 dark:border-slate-700"
+        >
+          <div className="w-12 h-12 bg-green-100 dark:bg-green-900/40 text-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+            <TrendingUp size={24} />
+          </div>
+          <div>
+            <div className="font-bold text-slate-900 dark:text-white text-lg">Improved Conversion</div>
+            <div className="text-sm text-slate-500 dark:text-slate-400">Typical outcome for our clients</div>
+          </div>
+        </motion.div>
       </motion.div>
     </div>
   </section>
@@ -216,14 +231,16 @@ const OurSolutionText = () => (
     
     <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10">
       <div>
-        <h2 className="heading-lg mb-8">Simple Websites That Help Businesses <span className="text-brand-accent">Get More Customers</span></h2>
+        <h2 className="heading-lg mb-8">Stop Guessing. Get a <span className="text-brand-accent">Free Website Audit</span></h2>
+        <p className="text-xl opacity-90 mb-8 max-w-lg">
+          We'll analyze your current site and give you a clear roadmap to more customers. No strings attached.
+        </p>
         <div className="space-y-6">
           {[
-            "Professional website design that builds trust",
-            "Mobile-friendly layout for customers on the go",
-            "Clear contact forms to capture new leads",
-            "Google Maps integration so people can find you",
-            "Easy-to-read service pages explaining what you do"
+            "Speed & Performance Check",
+            "Local SEO Visibility Report",
+            "Conversion Rate Analysis",
+            "Mobile-Friendly Verification"
           ].map((text, i) => (
             <div key={i} className="flex items-start gap-4">
               <div className="mt-1 w-6 h-6 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
@@ -235,19 +252,71 @@ const OurSolutionText = () => (
         </div>
         <div className="mt-12">
           <a href="#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-white text-brand-primary font-bold rounded-xl hover:bg-slate-100 transition-all">
-            Start Your Project Today <ChevronRight size={20} />
+            Claim Your Free Audit <ArrowRight size={20} />
           </a>
         </div>
       </div>
       
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-4 pt-12">
-          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400&q=80" className="rounded-2xl shadow-2xl border-4 border-white/10" alt="Business" referrerPolicy="no-referrer" />
-          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=400&q=80" className="rounded-2xl shadow-2xl border-4 border-white/10" alt="Meeting" referrerPolicy="no-referrer" />
+      <div className="relative pt-12 lg:pt-0">
+        <div className="grid grid-cols-2 gap-4 opacity-30 blur-sm scale-95 transform-gpu transition-all hover:blur-none hover:opacity-100 hover:scale-100">
+          <div className="space-y-4 pt-12">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400&q=80" className="rounded-2xl shadow-xl border-4 border-white/5" alt="Business" referrerPolicy="no-referrer" />
+            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=400&q=80" className="rounded-2xl shadow-xl border-4 border-white/5" alt="Office" referrerPolicy="no-referrer" />
+          </div>
+          <div className="space-y-4">
+            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=400&q=80" className="rounded-2xl shadow-xl border-4 border-white/5" alt="Meeting" referrerPolicy="no-referrer" />
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=400&q=80" className="rounded-2xl shadow-xl border-4 border-white/5" alt="Workspace" referrerPolicy="no-referrer" />
+          </div>
         </div>
-        <div className="space-y-4">
-          <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=400&q=80" className="rounded-2xl shadow-2xl border-4 border-white/10" alt="Office" referrerPolicy="no-referrer" />
-          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=400&q=80" className="rounded-2xl shadow-2xl border-4 border-white/10" alt="Workspace" referrerPolicy="no-referrer" />
+        
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] md:w-full max-w-md">
+          <div className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white p-6 md:p-8 rounded-2xl shadow-2xl border border-slate-100 dark:border-slate-800">
+            <div className="flex items-center gap-4 mb-6 md:mb-8">
+              <div className="w-12 h-12 bg-slate-800 dark:bg-brand-primary text-white rounded-xl flex items-center justify-center flex-shrink-0">
+                <BarChart2 size={24} />
+              </div>
+              <div>
+                <div className="font-bold text-lg leading-tight text-slate-900 dark:text-white">Audit Report Preview</div>
+                <div className="text-sm text-slate-500 dark:text-slate-400">Sample Data</div>
+              </div>
+            </div>
+            
+            <div className="space-y-5 md:space-y-6">
+              <div>
+                <div className="flex justify-between mb-2 text-sm font-bold">
+                  <span className="text-slate-700 dark:text-slate-300">Site Speed</span>
+                  <span className="text-red-500">Poor</span>
+                </div>
+                <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2">
+                  <div className="bg-red-500 h-2 rounded-full w-[25%]"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div className="flex justify-between mb-2 text-sm font-bold">
+                  <span className="text-slate-700 dark:text-slate-300">Mobile UX</span>
+                  <span className="text-yellow-500">Average</span>
+                </div>
+                <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2">
+                  <div className="bg-yellow-500 h-2 rounded-full w-[60%]"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div className="flex justify-between mb-2 text-sm font-bold">
+                  <span className="text-slate-700 dark:text-slate-300">SEO Visibility</span>
+                  <span className="text-green-500">Good</span>
+                </div>
+                <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2">
+                  <div className="bg-green-500 h-2 rounded-full w-[85%]"></div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="mt-6 md:mt-8 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl italic text-sm text-slate-600 dark:text-slate-400 border border-slate-100 dark:border-slate-800/50 leading-relaxed shadow-sm">
+              "Slow loading times can cause visitors to leave before they even see your services."
+            </div>
+          </div>
         </div>
       </div>
     </div>
