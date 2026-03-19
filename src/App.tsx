@@ -257,19 +257,8 @@ const OurSolutionText = () => (
         </div>
       </div>
       
-      <div className="relative pt-12 lg:pt-0">
-        <div className="grid grid-cols-2 gap-4 opacity-30 blur-sm scale-95 transform-gpu transition-all hover:blur-none hover:opacity-100 hover:scale-100">
-          <div className="space-y-4 pt-12">
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400&q=80" className="rounded-2xl shadow-xl border-4 border-white/5" alt="Business" referrerPolicy="no-referrer" />
-            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=400&q=80" className="rounded-2xl shadow-xl border-4 border-white/5" alt="Office" referrerPolicy="no-referrer" />
-          </div>
-          <div className="space-y-4">
-            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=400&q=80" className="rounded-2xl shadow-xl border-4 border-white/5" alt="Meeting" referrerPolicy="no-referrer" />
-            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=400&q=80" className="rounded-2xl shadow-xl border-4 border-white/5" alt="Workspace" referrerPolicy="no-referrer" />
-          </div>
-        </div>
-        
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] md:w-full max-w-md">
+      <div className="flex items-center justify-center pt-12 lg:pt-0">
+        <div className="w-full max-w-md">
           <div className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white p-6 md:p-8 rounded-2xl shadow-2xl border border-slate-100 dark:border-slate-800">
             <div className="flex items-center gap-4 mb-6 md:mb-8">
               <div className="w-12 h-12 bg-slate-800 dark:bg-brand-primary text-white rounded-xl flex items-center justify-center flex-shrink-0">
