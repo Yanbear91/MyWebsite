@@ -117,7 +117,7 @@ const TopTitleAndImage = () => (
           A Surge of Customers Starts With a <span className="text-brand-primary dark:text-brand-accent">Great Website</span>
         </h1>
         <p className="text-xl text-muted dark:text-slate-400 mb-8 max-w-lg">
-          I build powerful, lightning-fast websites that help local businesses dominate their market and get more customers.
+          I build fast, modern websites that help local businesses attract more customers and grow online.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 mb-10">
           <a href="#contact" className="px-8 py-4 bg-brand-primary text-white font-bold rounded-xl hover:bg-brand-accent transition-all flex items-center justify-center gap-2 shadow-xl shadow-brand-primary/20 group">
