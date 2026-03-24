@@ -30,6 +30,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://surgewebstudio.com/",
   },
+  verification: {
+    google: "yz5btVc2CM8yjWIW7IBIbz3ad4b7gb0lnTsDCj9fUbw",
+  },
 };
 
 export default function RootLayout({
