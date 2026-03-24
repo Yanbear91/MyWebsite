@@ -1,11 +1,9 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.surgewebstudio.com'
-
   return [
     {
-      url: baseUrl,
+      url: 'https://www.surgewebstudio.com',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1,

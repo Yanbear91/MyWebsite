@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Lightning Fast Web Design & Development | Surge Web Studio",
     description: "Get a professional, lightning-fast website that helps your local business dominate the market.",
-    url: "https://surgewebstudio.com/",
+    url: "https://www.surgewebstudio.com/",
     siteName: "Surge Web Studio",
     images: [
       {
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     images: ["https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"],
   },
   alternates: {
-    canonical: "https://surgewebstudio.com/",
+    canonical: "https://www.surgewebstudio.com/",
   },
   verification: {
     google: "yz5btVc2CM8yjWIW7IBIbz3ad4b7gb0lnTsDCj9fUbw",
