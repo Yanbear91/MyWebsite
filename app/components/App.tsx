@@ -35,6 +35,17 @@ const Navbar = ({ isDark, setIsDark }: { isDark: boolean, setIsDark: (v: boolean
     setIsDark((prev: boolean) => !prev);
   };
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    setIsOpen(false);
+    const element = document.getElementById(id);
+    if (element) {
+      const top = element.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top, behavior: 'smooth' });
+      window.history.pushState(null, '', `#${id}`);
+    }
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
@@ -52,9 +63,9 @@ const Navbar = ({ isDark, setIsDark }: { isDark: boolean, setIsDark: (v: boolean
         </button>
         
         <div className="hidden md:flex items-center gap-8">
-          <a href="#services" className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-brand-primary transition-colors">Services</a>
-          <a href="#process" className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-brand-primary transition-colors">How it Works</a>
-          <a href="#portfolio" className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-brand-primary transition-colors">Examples</a>
+          <a href="#services" onClick={(e) => handleNavClick(e, 'services')} className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-brand-primary transition-colors">Services</a>
+          <a href="#process" onClick={(e) => handleNavClick(e, 'process')} className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-brand-primary transition-colors">How it Works</a>
+          <a href="#portfolio" onClick={(e) => handleNavClick(e, 'portfolio')} className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-brand-primary transition-colors">Examples</a>
           
           <div className="flex items-center gap-4 border-l border-slate-200 dark:border-slate-800 pl-8">
             <button 
@@ -64,7 +75,7 @@ const Navbar = ({ isDark, setIsDark }: { isDark: boolean, setIsDark: (v: boolean
             >
               {isDark ? <Sun size={20} /> : <Moon size={20} />}
             </button>
-            <a href="#contact" className="px-5 py-2.5 bg-brand-primary text-white text-sm font-semibold rounded-full hover:bg-brand-accent transition-all shadow-lg shadow-brand-primary/20">
+            <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="px-5 py-2.5 bg-brand-primary text-white text-sm font-semibold rounded-full hover:bg-brand-accent transition-all shadow-lg shadow-brand-primary/20">
               Free Website Audit
             </a>
           </div>
@@ -86,19 +97,18 @@ const Navbar = ({ isDark, setIsDark }: { isDark: boolean, setIsDark: (v: boolean
       <AnimatePresence>
         {isOpen && (
           <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white dark:bg-slate-950 border-b border-slate-100 dark:border-slate-800 overflow-hidden"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden absolute top-20 left-0 w-full h-[calc(100vh-80px)] bg-white dark:bg-slate-950 flex flex-col items-center justify-center p-6 gap-8 border-t border-slate-100 dark:border-slate-800"
           >
-            <div className="flex flex-col p-6 gap-4">
-              <a href="#services" onClick={() => setIsOpen(false)} className="text-lg font-medium text-slate-900 dark:text-white">Services</a>
-              <a href="#process" onClick={() => setIsOpen(false)} className="text-lg font-medium text-slate-900 dark:text-white">How it Works</a>
-              <a href="#portfolio" onClick={() => setIsOpen(false)} className="text-lg font-medium text-slate-900 dark:text-white">Examples</a>
-              <a href="#contact" onClick={() => setIsOpen(false)} className="w-full py-4 bg-brand-primary text-white text-center font-bold rounded-xl">
-                Free Website Audit
-              </a>
-            </div>
+            <a href="#services" onClick={(e) => handleNavClick(e, 'services')} className="text-2xl font-bold text-slate-900 dark:text-white hover:text-brand-primary transition-colors">Services</a>
+            <a href="#process" onClick={(e) => handleNavClick(e, 'process')} className="text-2xl font-bold text-slate-900 dark:text-white hover:text-brand-primary transition-colors">How it Works</a>
+            <a href="#portfolio" onClick={(e) => handleNavClick(e, 'portfolio')} className="text-2xl font-bold text-slate-900 dark:text-white hover:text-brand-primary transition-colors">Examples</a>
+            <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="w-full max-w-xs mt-8 py-4 bg-brand-primary text-white text-center text-lg font-bold rounded-xl shadow-lg shadow-brand-primary/20 hover:bg-brand-accent transition-all">
+              Free Website Audit
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
